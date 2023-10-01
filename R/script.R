@@ -1,7 +1,17 @@
+# carregando pacotes
+library(ggplot2)
+
 # carregando dados
-dados <- readr::read_csv("../data/blood-pressure_icaro.csv")
+dados <- readr::read_csv("data/blood-pressure_icaro.csv")
 
-novo_dados <- dados |> 
-  dplyr::relocate(time, .after = date)
+dados |> 
+  ggplot2::ggplot() +
+  ggplot2::aes(y = sis, x = dia) +
+  ggplot2::geom_point()
 
-readr::write_csv(novo_dados, "../data/blood-pressure_icaro-novo.csv")
+dados |> 
+  ggplot() + 
+  aes(x = date, y = sis) +
+  geom_point() +
+  geom_line(color = "blue") +
+  geom_smooth(method = lm, se = FALSE, color = "red")
