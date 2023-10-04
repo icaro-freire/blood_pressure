@@ -5,6 +5,8 @@ library(dplyr)
 # carregando dados --------------------------------------------------------
 dados <- readr::read_csv("data/blood-pressure_icaro.csv")
 
+dados
+
 # escalas pressão A -------------------------------------------------------
 dados_pressaoA <- dados |> 
   select(sis, dia) |> 
@@ -108,6 +110,11 @@ dados_sis |>
 # densidade ---------------------------------------------------------------
 
 dados_pressaoA |> 
+  ggplot() +
+  aes(x = dia, fill = classes) +
+  geom_density()
+
+dados_pressaoB |> 
   ggplot() +
   aes(x = dia, fill = classes) +
   geom_density()
